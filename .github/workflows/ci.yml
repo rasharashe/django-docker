@@ -24,9 +24,10 @@ jobs:
       - name: Run linting
         run: ruff check .
 
-      - name: Run Django tests
+      - name: Run tests with coverage
         run: |
-          python manage.py test
+          coverage run manage.py test
+          coverage report --fail-under=80
       
       - name: Build Docker image
         run: docker build -t django-docker .
